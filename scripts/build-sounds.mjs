@@ -40,12 +40,20 @@ const SOUNDS = [
   { id: 'frogs', src: 'frogs__1.mp3', start: 2, dur: 60, xfade: 3 },
   { id: 'owl', src: 'owl__1.mp3', track: true, fadeOut: 0.4, pad: 17 },
   { id: 'cat', src: 'cat__1.mp3', start: 2, dur: 30, xfade: 3 },
-  { id: 'bowl', src: 'bowl__1.mp3', wrap: 12 },
-  { id: 'chimes-metal', src: 'chimes-metal__1.mp3', start: 2, dur: 55, xfade: 4, gain: -4, swell: 0.65 },
-  { id: 'chimes-wood', src: 'chimes-wood__2.mp3', start: 2, dur: 55, xfade: 4, gain: -4, swell: 0.65 },
+  // a struck bowl is mostly decay, so matched loudness leaves it faint next to steady sounds: lifted, strike left unshaved
+  { id: 'bowl', src: 'bowl__3.mp3', wrap: 12, gain: 4, limiting: 0 },
+  // the calmest minute of a light-breeze recording; the high-pass removes wind thumps below the lowest tube
+  { id: 'chimes-metal', src: 'chimes-metal__3.mp3', start: 40, dur: 55, xfade: 4, eq: 'highpass=f=350' },
+  {
+    id: 'chimes-wood',
+    src: 'bamboo.flac', // rendered by scripts/make-bamboo.mjs
+    dur: 60,
+    xfade: 0,
+    credit: { title: 'bamboo_wind_chimes_1.wav, single knocks re-spaced', author: 'jppi_Stu', license: 'CC-BY 4.0', sourcePage: 'https://freesound.org/people/jppi_Stu/sounds/17090/' },
+  },
   { id: 'tanpura', src: 'tanpura__2.mp3', start: 16, dur: 48, xfade: 4, level: true },
-  // stops before the silent gaps near the end of the take; flute__d / flute__e are spare candidates
-  { id: 'flute', src: 'flute__a.mp3', track: true, start: 2, dur: 116, fadeOut: 4, pad: 3, level: true },
+  // an unaccompanied cedar flute; the spectrogram shows one melodic line and nothing under it
+  { id: 'flute', src: 'flute__e.mp3', track: true, dur: 133.8, fadeOut: 1.5, pad: 3, level: true },
   // the recording has a loud right hand over a faint left: lift the low mids, pull the melody range down
   { id: 'piano', src: 'piano__2.ogg', track: true, fadeOut: 3, pad: 3, level: true, eq: 'equalizer=f=300:t=q:w=0.9:g=4,equalizer=f=1400:t=q:w=0.9:g=-5' },
   {

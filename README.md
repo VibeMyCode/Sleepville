@@ -31,7 +31,7 @@ npm run sounds     # rebuild public/sounds/ from sounds-src/ (optional)
 - UI: React, TypeScript, Vite, [Motion](https://motion.dev) for animation. Wrapped for Android with [Capacitor](https://capacitorjs.com).
 - Audio: Web Audio. Short loops are decoded into memory and loop sample-exactly; long melodic tracks are streamed.
 - Native part (`android/app/src/main/java/app/sleepville/`): a foreground service with a wake lock, the notification actions, call detection, and closing the app when the timer ends.
-- Sounds are cut into seamless loops and level-matched by `scripts/build-sounds.mjs`. The piano melody is rendered from single-note samples by `scripts/make-lullaby.mjs`.
+- Sounds are cut into seamless loops and level-matched by `scripts/build-sounds.mjs`. The piano melody is rendered from single-note samples by `scripts/make-lullaby.mjs`. The bamboo chimes are single knocks from a recording, re-spaced by `scripts/make-bamboo.mjs`.
 
 [SPEC.md](SPEC.md) (in Russian) holds the requirements, the architecture and the state of work.
 

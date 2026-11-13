@@ -270,6 +270,14 @@ const ART: Record<string, ReactNode> = {
       <circle cx="16" cy="10.500" r="1.300" fill="currentColor" stroke="none" />
     </>
   ),
+  qr: (
+    <>
+      <rect x="5" y="5" width="9" height="9" rx="2" />
+      <rect x="18" y="5" width="9" height="9" rx="2" />
+      <rect x="5" y="18" width="9" height="9" rx="2" />
+      <path d="M18 18h3v3M27 18v3M18 26v1h3M26 26h1" />
+    </>
+  ),
   close: <path d="M9 9l14 14M23 9 9 23" />,
   check: <path d="M7 17l6 6L25 10" />,
 }

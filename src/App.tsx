@@ -31,7 +31,8 @@ const known = (l: Levels): Levels => Object.fromEntries(Object.entries(l).filter
 
 export default function App() {
   const [lang, setLang] = useState<Lang>(() => load('lang', detectLang()))
-  const [levels, setLevels] = useState<Levels>(() => known(load('levels', {})))
+  // every launch starts silent with nothing selected: a restored selection came on all at once with the first tap on any sound
+  const [levels, setLevels] = useState<Levels>({})
   const [mixes, setMixes] = useState<Mix[]>(() => load<Mix[]>('mixes', []).map((m) => ({ ...m, levels: known(m.levels) })))
   const [hidden, setHidden] = useState<string[]>(() => load('hiddenPresets', []))
   const [playing, setPlaying] = useState(false)
@@ -53,7 +54,6 @@ export default function App() {
   liveRef.current = live
   const everPlayed = useRef(false)
 
-  useEffect(() => save('levels', levels), [levels])
   useEffect(() => save('mixes', mixes), [mixes])
   useEffect(() => save('hiddenPresets', hidden), [hidden])
   useEffect(() => {

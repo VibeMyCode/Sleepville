@@ -18,11 +18,11 @@ Processed (trimmed, looped, level-matched) by `scripts/build-sounds.mjs`.
 | frogs | Frogs | unknown (Moodist third-party asset) | Pixabay Content License or CC0 (per Moodist README) | https://github.com/remvze/moodist/blob/main/public/sounds/animals/frog.mp3 |
 | owl | Owl | unknown (Moodist third-party asset) | Pixabay Content License or CC0 (per Moodist README) | https://github.com/remvze/moodist/blob/main/public/sounds/animals/owl.mp3 |
 | cat | Cat purring | unknown (Moodist third-party asset) | Pixabay Content License or CC0 (per Moodist README) | https://github.com/remvze/moodist/blob/main/public/sounds/animals/cat-purring.mp3 |
-| bowl | Singing bowl | unknown (Moodist third-party asset) | Pixabay Content License or CC0 (per Moodist README) | https://github.com/remvze/moodist/blob/main/public/sounds/things/singing-bowl.mp3 |
-| chimes-metal | Wind chimes | unknown (Moodist third-party asset) | Pixabay Content License or CC0 (per Moodist README) | https://github.com/remvze/moodist/blob/main/public/sounds/things/wind-chimes.mp3 |
-| chimes-wood | Bamboo chimes Alem w fx 1.wav | Owl | CC-BY 4.0 | https://freesound.org/people/Owl/sounds/387918/ |
+| bowl | singing bell hit 2.wav | ryancacophony | CC0 1.0 | https://freesound.org/people/ryancacophony/sounds/202017/ |
+| chimes-metal | Windchime.wav | Chris W | CC0 1.0 | https://freesound.org/people/Chris%20W/sounds/432813/ |
+| chimes-wood | bamboo_wind_chimes_1.wav, single knocks re-spaced | jppi_Stu | CC-BY 4.0 | https://freesound.org/people/jppi_Stu/sounds/17090/ |
 | tanpura | Tanbura_96Khz24bit.wav | psuess | CC0 1.0 | https://freesound.org/people/psuess/sounds/194435/ |
-| flute | Dreamy Bansuri Pads+Ambience3_bass_corrected | Swaraj_Sonavane | CC-BY 4.0 | https://freesound.org/people/Swaraj_Sonavane/sounds/859882/ |
+| flute | KerriFlute.wav | ethang | CC-BY 4.0 | https://freesound.org/people/ethang/sounds/88795/ |
 | piano | Erik Satie - Gymnopedies - la 1ere, lent et douloureux | Erik Satie (composer); historic recording | Public domain | https://commons.wikimedia.org/wiki/File:Erik_Satie_-_gymnopedies_-_la_1_ere._lent_et_douloureux.ogg |
 | lullaby | Lullaby, rendered from Salamander Grand Piano V3 samples | Alexander Holm (samples) | CC-BY 3.0 | https://github.com/sfzinstruments/SalamanderGrandPiano |
 | sitar | Sourav-Ganguly-ITC-SRA.wav | xserra | CC-BY 4.0 | https://freesound.org/people/xserra/sounds/125985/ |

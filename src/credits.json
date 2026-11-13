@@ -99,24 +99,24 @@
   },
   {
     "id": "bowl",
-    "title": "Singing bowl",
-    "author": "unknown (Moodist third-party asset)",
-    "license": "Pixabay Content License or CC0 (per Moodist README)",
-    "url": "https://github.com/remvze/moodist/blob/main/public/sounds/things/singing-bowl.mp3"
+    "title": "singing bell hit 2.wav",
+    "author": "ryancacophony",
+    "license": "CC0 1.0",
+    "url": "https://freesound.org/people/ryancacophony/sounds/202017/"
   },
   {
     "id": "chimes-metal",
-    "title": "Wind chimes",
-    "author": "unknown (Moodist third-party asset)",
-    "license": "Pixabay Content License or CC0 (per Moodist README)",
-    "url": "https://github.com/remvze/moodist/blob/main/public/sounds/things/wind-chimes.mp3"
+    "title": "Windchime.wav",
+    "author": "Chris W",
+    "license": "CC0 1.0",
+    "url": "https://freesound.org/people/Chris%20W/sounds/432813/"
   },
   {
     "id": "chimes-wood",
-    "title": "Bamboo chimes Alem w fx 1.wav",
-    "author": "Owl",
+    "title": "bamboo_wind_chimes_1.wav, single knocks re-spaced",
+    "author": "jppi_Stu",
     "license": "CC-BY 4.0",
-    "url": "https://freesound.org/people/Owl/sounds/387918/"
+    "url": "https://freesound.org/people/jppi_Stu/sounds/17090/"
   },
   {
     "id": "tanpura",
@@ -127,10 +127,10 @@
   },
   {
     "id": "flute",
-    "title": "Dreamy Bansuri Pads+Ambience3_bass_corrected",
-    "author": "Swaraj_Sonavane",
+    "title": "KerriFlute.wav",
+    "author": "ethang",
     "license": "CC-BY 4.0",
-    "url": "https://freesound.org/people/Swaraj_Sonavane/sounds/859882/"
+    "url": "https://freesound.org/people/ethang/sounds/88795/"
   },
   {
     "id": "piano",

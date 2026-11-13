@@ -2,6 +2,8 @@ import { memo, useEffect, useMemo, useState, type CSSProperties, type ReactNode 
 import { AnimatePresence, motion, useDragControls } from 'motion/react'
 import { version } from '../package.json'
 import credits from './credits.json'
+import qrBoosty from './qr-boosty.png'
+import qrErc20 from './qr-erc20.png'
 import { Icon } from './icons'
 import { useT, type Lang } from './i18n'
 import { SOUNDS, TIMER_MINUTES, sameLevels, type Levels, type Mix, type Sound } from './sounds'
@@ -20,6 +22,31 @@ const clock = (ms: number) => {
 const AURORA = ['#5B3FD1', '#C2418A', '#2A6FDB']
 const GLOW_AT = ['-12% -6%', '116% 42%', '14% 112%']
 
+// two palettes that fade in and out against each other while they turn
+const DRIFT = [
+  ['#3fb6d1', '#7a4be0', '#e0559b'],
+  ['#3b6fe0', '#d14fb0', '#35c2a1'],
+]
+const DRIFT_AT = [
+  [0.3, 0.3],
+  [0.72, 0.44],
+  [0.42, 0.76],
+]
+const DRIFT_PX = 256 // soft blobs survive any upscaling, so a tiny texture covers the whole sky
+function paintDrift(canvas: HTMLCanvasElement | null, colors: string[]) {
+  const g = canvas?.getContext('2d')
+  if (!g) return
+  g.clearRect(0, 0, DRIFT_PX, DRIFT_PX)
+  colors.forEach((c, i) => {
+    const [x, y] = DRIFT_AT[i].map((v) => v * DRIFT_PX)
+    const blob = g.createRadialGradient(x, y, 0, x, y, DRIFT_PX * 0.36)
+    blob.addColorStop(0, c + '70')
+    blob.addColorStop(1, c + '00')
+    g.fillStyle = blob
+    g.fillRect(0, 0, DRIFT_PX, DRIFT_PX)
+  })
+}
+
 /**
  * The whole sky is one painted layer. A new mix paints a second layer that fades in over the
  * old one, so a colour change costs an opacity animation instead of repainting the screen
@@ -31,14 +58,21 @@ export const Sky = memo(function Sky({ colors }: { colors: string }) {
   const glows = GLOW_AT.map((at, i) => `radial-gradient(95vmax circle at ${at}, color-mix(in srgb, ${list.length ? list[i % list.length] : AURORA[i]} ${strength}%, transparent), transparent 70%)`)
   const background = `${glows.join(', ')}, linear-gradient(180deg, #0d0a26 0%, #181142 34%, #33206a 66%, #6b2a7a 92%, #a13f7c 100%)`
 
-  // Three layers of box-shadow dots, two of them pulsing. One element per star, each with
-  // its own opacity animation, made the Android WebView compositor corrupt the content above.
+  // The field of small stars is three layers of box-shadow dots, each breathing at its own pace.
   const stars = useMemo(() => {
     let seed = 7 // fixed: the same sky every launch
     const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647)
     const groups: string[][] = [[], [], []]
     for (let i = 0; i < 75; i++) groups[i % 3].push(`${(rnd() * 100).toFixed(1)}vw ${(rnd() * 64).toFixed(1)}vh 0 ${(rnd() * 1.1).toFixed(2)}px #fff`)
     return groups.map((g) => g.join(','))
+  }, [])
+  const sparks = useMemo(() => {
+    let seed = 23
+    const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647)
+    return Array.from({ length: 14 }, () => {
+      const period = 9 + rnd() * 12
+      return { left: `${(4 + rnd() * 92).toFixed(1)}%`, top: `${(3 + rnd() * 66).toFixed(1)}%`, animationDuration: `${period.toFixed(1)}s`, animationDelay: `${(-rnd() * period).toFixed(1)}s` }
+    })
   }, [])
 
   return (
@@ -47,8 +81,14 @@ export const Sky = memo(function Sky({ colors }: { colors: string }) {
         {/* the old layer stays fully opaque underneath until the new one has covered it */}
         <motion.div key={colors} className="sky-paint" style={{ background }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0, transition: { delay: 1.3, duration: 0.01 } }} transition={{ duration: 1.2, ease: 'easeInOut' }} />
       </AnimatePresence>
+      {DRIFT.map((colors, i) => (
+        <canvas key={i} className={`drift d${i}`} width={DRIFT_PX} height={DRIFT_PX} ref={(el) => paintDrift(el, colors)} />
+      ))}
       {stars.map((boxShadow, i) => (
         <i key={i} className={`stars s${i}`} style={{ boxShadow }} />
+      ))}
+      {sparks.map((style, i) => (
+        <i key={i} className="spark" style={style} />
       ))}
     </div>
   )
@@ -387,12 +427,33 @@ export function SaveSheet(p: { open: boolean; suggested: string; onClose: () => 
 const BOOSTY = 'https://boosty.to/vibemycode/donate'
 const REPO = 'https://github.com/VibeMyCode/Sleepville'
 const ADDRESS = '0x183995583E9c4b321A40793C5dadA0b3f3801694'
-// the QR picture is optional: drop src/donate-qr.svg (or .png) in and it appears here
-const QR = Object.values(import.meta.glob<string>('./donate-qr.*', { eager: true, query: '?url', import: 'default' }))[0]
+
+// a QR code stays folded away until its button is pressed
+function QrButton({ open, onToggle }: { open: boolean; onToggle: () => void }) {
+  const t = useT()
+  return (
+    <button className="icon-btn" aria-label={t.showQr} aria-expanded={open} onClick={onToggle}>
+      <Icon name="qr" size={26} />
+    </button>
+  )
+}
+function QrPicture({ src, open }: { src: string; open: boolean }) {
+  return (
+    <AnimatePresence initial={false}>
+      {open && (
+        <motion.div className="qr-wrap" initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={soft}>
+          <img className="qr" src={src} alt="QR" width={184} height={184} />
+        </motion.div>
+      )}
+    </AnimatePresence>
+  )
+}
 
 export function AboutSheet(p: { open: boolean; lang: Lang; onLang: (l: Lang) => void; onClose: () => void }) {
   const t = useT()
   const [copied, setCopied] = useState(false)
+  const [qr, setQr] = useState<null | 'boosty' | 'erc20'>(null)
+  const flip = (which: 'boosty' | 'erc20') => setQr(qr === which ? null : which)
   const copy = async () => {
     try {
       await navigator.clipboard.writeText(ADDRESS)
@@ -411,16 +472,23 @@ export function AboutSheet(p: { open: boolean; lang: Lang; onLang: (l: Lang) => 
 
       <h3>{t.support}</h3>
       <p className="about-text">{t.supportText}</p>
-      <a className="btn" href={BOOSTY} target="_blank" rel="noopener noreferrer">
-        {t.boosty}
-      </a>
+      <div className="pay-row">
+        <a className="btn" href={BOOSTY} target="_blank" rel="noopener noreferrer">
+          {t.boosty}
+        </a>
+        <QrButton open={qr === 'boosty'} onToggle={() => flip('boosty')} />
+      </div>
+      <QrPicture src={qrBoosty} open={qr === 'boosty'} />
       <div className="crypto">
         <p className="about-text">{t.crypto}</p>
-        {QR && <img className="qr" src={QR} alt="QR" width={168} height={168} />}
         <code className="address">{ADDRESS}</code>
-        <button className="btn ghost" onClick={copy}>
-          {copied ? t.copied : t.copy}
-        </button>
+        <div className="pay-row">
+          <button className="btn ghost" onClick={copy}>
+            {copied ? t.copied : t.copy}
+          </button>
+          <QrButton open={qr === 'erc20'} onToggle={() => flip('erc20')} />
+        </div>
+        <QrPicture src={qrErc20} open={qr === 'erc20'} />
         <p className="fine">{t.cryptoWarning}</p>
       </div>
 

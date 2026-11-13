@@ -12,6 +12,8 @@
   --gutter: 20px;
   --safe-b: env(safe-area-inset-bottom, 0px);
   --safe-t: env(safe-area-inset-top, 0px);
+  /* the same crescent as the launcher and notification icons */
+  --crescent: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='27 31 50 50'%3E%3Cpath fill='%23fff3d4' d='M49.88 32.09A24 24 0 1 0 74.86 63.31 20 20 0 1 1 49.88 32.09Z'/%3E%3C/svg%3E");
   color-scheme: dark;
 }
 
@@ -80,6 +82,40 @@ h2 {
   background-blend-mode: screen, screen, screen, normal;
 }
 
+/* Colour that wanders: two small canvases stretched far past the screen and turned slowly.
+   Only transform and opacity move, so the compositor does all of it without repainting. */
+.drift {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 150vmax;
+  height: 150vmax;
+  margin: -75vmax 0 0 -75vmax;
+}
+.d0 {
+  animation:
+    turn 97s linear infinite,
+    shimmer 29s ease-in-out infinite alternate;
+}
+.d1 {
+  animation:
+    turn 131s linear infinite reverse,
+    shimmer 37s ease-in-out -18s infinite alternate;
+}
+@keyframes turn {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes shimmer {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 .stars {
   position: absolute;
   left: 0;
@@ -89,15 +125,47 @@ h2 {
   border-radius: 50%;
   opacity: 0.75;
 }
+.s0 {
+  animation: twinkle 11s ease-in-out infinite;
+}
 .s1 {
-  animation: twinkle 5s ease-in-out infinite;
+  animation: twinkle 8s ease-in-out -2s infinite;
+  --dim: 0.05;
 }
 .s2 {
-  animation: twinkle 7s ease-in-out -3s infinite;
+  animation: twinkle 13s ease-in-out -7s infinite;
+  --dim: 0.05;
 }
 @keyframes twinkle {
   50% {
-    opacity: 0.15;
+    opacity: var(--dim, 0.35);
+  }
+}
+/* single stars that light up, hold and go out, each on its own clock */
+.spark {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 7px 1px rgba(255, 255, 255, 0.75);
+  opacity: 0;
+  animation: spark 12s ease-in-out infinite;
+}
+@keyframes spark {
+  0%,
+  50%,
+  100% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  66% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  80% {
+    opacity: 0.85;
+    transform: scale(0.75);
   }
 }
 
@@ -106,10 +174,8 @@ h2 {
   width: 50px;
   height: 50px;
   margin-right: 6px;
-  border-radius: 50%;
-  box-shadow: inset -14px 5px 0 0 var(--moon);
+  background: var(--crescent) center / contain no-repeat;
   filter: drop-shadow(0 0 16px rgba(255, 236, 180, 0.55));
-  transform: rotate(-18deg);
 }
 
 /* ---------- page ---------- */
@@ -120,6 +186,18 @@ h2 {
   padding: calc(var(--safe-t) + 30px) var(--gutter) calc(var(--safe-b) + 132px);
 }
 
+/* A running transform animation has no known bounds for the compositor: without a clip around it,
+   everything painted later is assumed to overlap it and is lifted into layers of its own.
+   One tap on a sound did that to every orb and slider on the page, which showed as a blink.
+   A clip keeps each animation's reach inside its own box. */
+.top {
+  overflow: clip;
+  overflow-clip-margin: 20px;
+}
+.tile {
+  contain: paint;
+  padding-top: 7px; /* the volume ring stands 6px proud of the orb */
+}
 .top {
   display: flex;
   align-items: flex-start;
@@ -159,7 +237,7 @@ h2 {
   margin-top: 34px;
 }
 .group h2 {
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 /* ---------- mixes ---------- */
@@ -274,7 +352,7 @@ h2 {
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 4px 6px;
+  gap: 0 6px; /* tiles must not overlap: see the note on .tile */
 }
 
 .tile {
@@ -301,7 +379,7 @@ h2 {
   inset: 0;
   border-radius: 50%;
   background: radial-gradient(circle at 32% 26%, #fff 0%, var(--c) 42%, color-mix(in oklab, var(--c), #2b1466 38%) 100%);
-  box-shadow: 0 10px 32px -6px color-mix(in srgb, var(--c) 75%, transparent);
+  box-shadow: 0 14px 26px -10px color-mix(in srgb, var(--c) 75%, transparent); /* sized to stay inside the tile's clip */
 }
 .orb-ring {
   position: absolute;
@@ -743,12 +821,35 @@ a.btn {
   display: flex;
   flex-direction: column;
 }
+.pay-row {
+  display: flex;
+  gap: 10px;
+}
+.pay-row .btn {
+  flex: 1;
+  min-width: 0;
+}
+.pay-row .icon-btn {
+  width: 54px;
+  height: 54px;
+  color: var(--moon);
+  transition: background 0.25s, color 0.25s;
+}
+.pay-row .icon-btn[aria-expanded='true'] {
+  background: var(--moon);
+  color: var(--ink);
+}
+.qr-wrap {
+  overflow: hidden;
+  display: grid;
+  justify-items: center;
+}
 .qr {
-  align-self: center;
-  margin-bottom: 14px;
+  margin-top: 14px;
   padding: 8px;
   border-radius: 14px;
   background: #fff;
+  image-rendering: pixelated;
 }
 .address {
   margin-bottom: 12px;
@@ -843,10 +944,8 @@ a.btn {
   width: 96px;
   height: 96px;
   margin-bottom: 18px;
-  border-radius: 50%;
-  box-shadow: inset -26px 9px 0 0 var(--moon);
+  background: var(--crescent) center / contain no-repeat;
   filter: drop-shadow(0 0 26px rgba(255, 236, 180, 0.5));
-  transform: rotate(-18deg);
 }
 
 /* ---------- live icon parts (only while a sound is on) ---------- */
