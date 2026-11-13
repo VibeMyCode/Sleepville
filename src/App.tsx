@@ -30,7 +30,15 @@ const save = (key: string, value: unknown) => {
 const known = (l: Levels): Levels => Object.fromEntries(Object.entries(l).filter(([id]) => id in SOUNDS))
 
 export default function App() {
-  const [lang, setLang] = useState<Lang>(() => load('lang', detectLang()))
+  // only a language picked by hand is remembered; otherwise the app follows the system on every launch
+  const [lang, setLang] = useState<Lang>(() => {
+    const own = load('langChoice', '')
+    return own in STRINGS ? (own as Lang) : detectLang()
+  })
+  const chooseLang = (l: Lang) => {
+    save('langChoice', l)
+    setLang(l)
+  }
   // every launch starts silent with nothing selected: a restored selection came on all at once with the first tap on any sound
   const [levels, setLevels] = useState<Levels>({})
   const [mixes, setMixes] = useState<Mix[]>(() => load<Mix[]>('mixes', []).map((m) => ({ ...m, levels: known(m.levels) })))
@@ -57,7 +65,6 @@ export default function App() {
   useEffect(() => save('mixes', mixes), [mixes])
   useEffect(() => save('hiddenPresets', hidden), [hidden])
   useEffect(() => {
-    save('lang', lang)
     document.documentElement.lang = lang
   }, [lang])
   useEffect(() => {
@@ -231,7 +238,7 @@ export default function App() {
         <TimerSheet open={sheet === 'timer'} left={timer ? left : null} minutes={timer?.minutes} onClose={closeSheet} onStart={startTimer} onCancel={cancelTimer} />
         <MixSheet open={sheet === 'mix'} levels={levels} canSave={canSave} onClose={closeSheet} onLevel={setLevel} onRemove={toggle} onClear={() => setLevels({})} onSave={() => openSheet('save')} />
         <SaveSheet open={sheet === 'save'} suggested={t.myMix(mixes.length + 1)} onClose={closeSheet} onSave={saveMix} />
-        <AboutSheet open={sheet === 'about'} lang={lang} onLang={setLang} onClose={closeSheet} />
+        <AboutSheet open={sheet === 'about'} lang={lang} onLang={chooseLang} onClose={closeSheet} />
         <Goodnight show={!!timer && left <= FADE_MS} onCancel={cancelTimer} />
       </MotionConfig>
     </I18n.Provider>

@@ -5,7 +5,7 @@ import credits from './credits.json'
 import qrBoosty from './qr-boosty.png'
 import qrErc20 from './qr-erc20.png'
 import { Icon } from './icons'
-import { useT, type Lang } from './i18n'
+import { LANG_NAMES, useT, type Lang } from './i18n'
 import { SOUNDS, TIMER_MINUTES, sameLevels, type Levels, type Mix, type Sound } from './sounds'
 
 const pop = { type: 'spring', bounce: 0.45, visualDuration: 0.35 } as const
@@ -494,10 +494,10 @@ export function AboutSheet(p: { open: boolean; lang: Lang; onLang: (l: Lang) => 
 
       <h3>{t.language}</h3>
       <div className="segmented" role="radiogroup" aria-label={t.language}>
-        {(['ru', 'en'] as const).map((l) => (
-          <button key={l} role="radio" aria-checked={p.lang === l} onClick={() => p.onLang(l)}>
+        {(Object.keys(LANG_NAMES) as Lang[]).map((l) => (
+          <button key={l} role="radio" aria-checked={p.lang === l} lang={l} onClick={() => p.onLang(l)}>
             {p.lang === l && <motion.span layoutId="lang" className="segmented-thumb" transition={soft} />}
-            <span>{l === 'ru' ? 'Русский' : 'English'}</span>
+            <span>{LANG_NAMES[l]}</span>
           </button>
         ))}
       </div>

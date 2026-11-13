@@ -60,7 +60,7 @@ h1,
 h2 {
   margin: 0;
   font-family: var(--serif);
-  font-style: italic;
+  font-style: var(--slant, italic);
   font-weight: 600;
 }
 
@@ -638,7 +638,7 @@ h2 {
 .countdown {
   margin-top: 6px;
   font-family: var(--serif);
-  font-style: italic;
+  font-style: var(--slant, italic);
   font-weight: 600;
   font-size: 72px;
   line-height: 1;
@@ -668,7 +668,7 @@ h2 {
 }
 .duration b {
   font-family: var(--serif);
-  font-style: italic;
+  font-style: var(--slant, italic);
   font-weight: 600;
   font-size: 32px;
   line-height: 0.9;
@@ -790,7 +790,7 @@ h2 {
 .sheet h3 {
   margin: 28px 0 8px;
   font-family: var(--serif);
-  font-style: italic;
+  font-style: var(--slant, italic);
   font-weight: 600;
   font-size: 23px;
 }
@@ -863,7 +863,7 @@ a.btn {
 }
 .segmented {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   padding: 4px;
   border-radius: 27px;
   background: rgba(8, 5, 28, 0.35);
@@ -872,6 +872,7 @@ a.btn {
 .segmented button {
   position: relative;
   height: 46px;
+  min-width: 0;
   border-radius: 23px;
   font-weight: 600;
   font-size: 15px;
@@ -935,7 +936,7 @@ a.btn {
 }
 .goodnight strong {
   font-family: var(--serif);
-  font-style: italic;
+  font-style: var(--slant, italic);
   font-weight: 600;
   font-size: 40px;
   color: var(--moon);
@@ -1085,4 +1086,11 @@ a.btn {
   *::after {
     animation: none !important;
   }
+}
+
+/* Chinese, Japanese and Korean have no italic: the slanted fallback face looks broken */
+html:lang(zh),
+html:lang(ja),
+html:lang(ko) {
+  --slant: normal;
 }

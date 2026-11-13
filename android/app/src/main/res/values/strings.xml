@@ -4,6 +4,5 @@
     <string name="title_activity_main">Sleepville</string>
     <string name="package_name">app.sleepville</string>
     <string name="custom_url_scheme">app.sleepville</string>
-    <string name="channel_playback">Воспроизведение</string>
-    <string name="notification_playing">Звуки для сна играют</string>
+    <string name="channel_playback">Playback</string>
 </resources>

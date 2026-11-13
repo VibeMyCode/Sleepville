@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client'
 import '@fontsource-variable/onest'
 import '@fontsource/cormorant-garamond/latin-600-italic.css'
+import '@fontsource/cormorant-garamond/latin-ext-600-italic.css'
 import '@fontsource/cormorant-garamond/cyrillic-600-italic.css'
 import './styles.css'
 import App from './App'

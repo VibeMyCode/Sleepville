@@ -4,6 +4,8 @@ A sleep-sounds mixer for Android. Pick any combination of sounds, set each one's
 
 <img src="docs/screenshot.png" width="300" alt="Sleepville main screen: a grid of sound buttons, three of them lit, with saved mixes above and play, timer and mix controls below" />
 
+**[Download the latest APK](https://github.com/VibeMyCode/Sleepville/releases/latest)** — Android 8.0 or newer. Open the file on the phone and allow installation from this source.
+
 ## What it does
 
 - 23 looping sounds: rain, thunder, stream, waves, wind, campfire, birds, crickets, frogs, singing bowl, wind chimes, flute, piano, sitar, tanpura, sarod and more.
@@ -11,7 +13,8 @@ A sleep-sounds mixer for Android. Pick any combination of sounds, set each one's
 - Mixes are saved under a name and started with one tap. Six presets are built in; any mix can be deleted.
 - Sleep timer for 1, 5, 10, 15, 20, 30 or 60 minutes. The sound fades out over the last ten seconds and the app closes.
 - Keeps playing with the screen off. Play, pause and close from the notification. Pauses for a phone call and resumes after it.
-- Russian and English interface; layouts for phones, foldables and tablets.
+- Interface in 12 languages, picked from the system language: English, German, Spanish, French, Italian, Portuguese, Turkish, Indonesian, Russian, Chinese, Japanese, Korean.
+- Layouts for phones, foldables and tablets.
 
 ## Build
 
@@ -21,10 +24,11 @@ Requirements: Node 22, JDK 21, Android SDK (platform 36), ffmpeg (only for rebui
 npm install
 npm run dev        # web version at http://localhost:5199
 npm run apk        # debug APK in android/app/build/outputs/apk/debug/
+npm run release    # release APK in android/app/build/outputs/apk/release/
 npm run sounds     # rebuild public/sounds/ from sounds-src/ (optional)
 ```
 
-`npm run apk` needs `JAVA_HOME` pointing at JDK 21 and `ANDROID_HOME` at the SDK.
+`npm run apk` and `npm run release` need `JAVA_HOME` pointing at JDK 21 and `ANDROID_HOME` at the SDK. The release build is signed when `~/.android/sleepville/keystore.properties` (a line `storePassword=…`) and `release.jks` (key alias `sleepville`) exist; otherwise it comes out unsigned.
 
 ## How it is built
 
