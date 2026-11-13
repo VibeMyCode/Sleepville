@@ -1,0 +1,163 @@
+[
+  {
+    "id": "rain",
+    "title": "Light rain",
+    "author": "unknown (Moodist third-party asset)",
+    "license": "Pixabay Content License or CC0 (per Moodist README)",
+    "url": "https://github.com/remvze/moodist/blob/main/public/sounds/rain/light-rain.mp3"
+  },
+  {
+    "id": "rain-roof",
+    "title": "Rain on tent",
+    "author": "unknown (Moodist third-party asset)",
+    "license": "Pixabay Content License or CC0 (per Moodist README)",
+    "url": "https://github.com/remvze/moodist/blob/main/public/sounds/rain/rain-on-tent.mp3"
+  },
+  {
+    "id": "thunder",
+    "title": "Thunder (with rain)",
+    "author": "unknown (Moodist third-party asset)",
+    "license": "Pixabay Content License or CC0 (per Moodist README)",
+    "url": "https://github.com/remvze/moodist/blob/main/public/sounds/rain/thunder.mp3"
+  },
+  {
+    "id": "stream",
+    "title": "River",
+    "author": "unknown (Moodist third-party asset)",
+    "license": "Pixabay Content License or CC0 (per Moodist README)",
+    "url": "https://github.com/remvze/moodist/blob/main/public/sounds/nature/river.mp3"
+  },
+  {
+    "id": "waves",
+    "title": "Waves",
+    "author": "unknown (Moodist third-party asset)",
+    "license": "Pixabay Content License or CC0 (per Moodist README)",
+    "url": "https://github.com/remvze/moodist/blob/main/public/sounds/nature/waves.mp3"
+  },
+  {
+    "id": "wind",
+    "title": "Wind",
+    "author": "unknown (Moodist third-party asset)",
+    "license": "Pixabay Content License or CC0 (per Moodist README)",
+    "url": "https://github.com/remvze/moodist/blob/main/public/sounds/nature/wind.mp3"
+  },
+  {
+    "id": "leaves",
+    "title": "Wind in trees",
+    "author": "unknown (Moodist third-party asset)",
+    "license": "Pixabay Content License or CC0 (per Moodist README)",
+    "url": "https://github.com/remvze/moodist/blob/main/public/sounds/nature/wind-in-trees.mp3"
+  },
+  {
+    "id": "fire",
+    "title": "Campfire",
+    "author": "unknown (Moodist third-party asset)",
+    "license": "Pixabay Content License or CC0 (per Moodist README)",
+    "url": "https://github.com/remvze/moodist/blob/main/public/sounds/nature/campfire.mp3"
+  },
+  {
+    "id": "noise",
+    "title": "Synthesised with ffmpeg",
+    "author": "",
+    "license": "CC0",
+    "url": ""
+  },
+  {
+    "id": "birds",
+    "title": "Birds",
+    "author": "unknown (Moodist third-party asset)",
+    "license": "Pixabay Content License or CC0 (per Moodist README)",
+    "url": "https://github.com/remvze/moodist/blob/main/public/sounds/animals/birds.mp3"
+  },
+  {
+    "id": "crickets",
+    "title": "Crickets",
+    "author": "unknown (Moodist third-party asset)",
+    "license": "Pixabay Content License or CC0 (per Moodist README)",
+    "url": "https://github.com/remvze/moodist/blob/main/public/sounds/animals/crickets.mp3"
+  },
+  {
+    "id": "frogs",
+    "title": "Frogs",
+    "author": "unknown (Moodist third-party asset)",
+    "license": "Pixabay Content License or CC0 (per Moodist README)",
+    "url": "https://github.com/remvze/moodist/blob/main/public/sounds/animals/frog.mp3"
+  },
+  {
+    "id": "owl",
+    "title": "Owl",
+    "author": "unknown (Moodist third-party asset)",
+    "license": "Pixabay Content License or CC0 (per Moodist README)",
+    "url": "https://github.com/remvze/moodist/blob/main/public/sounds/animals/owl.mp3"
+  },
+  {
+    "id": "cat",
+    "title": "Cat purring",
+    "author": "unknown (Moodist third-party asset)",
+    "license": "Pixabay Content License or CC0 (per Moodist README)",
+    "url": "https://github.com/remvze/moodist/blob/main/public/sounds/animals/cat-purring.mp3"
+  },
+  {
+    "id": "bowl",
+    "title": "Singing bowl",
+    "author": "unknown (Moodist third-party asset)",
+    "license": "Pixabay Content License or CC0 (per Moodist README)",
+    "url": "https://github.com/remvze/moodist/blob/main/public/sounds/things/singing-bowl.mp3"
+  },
+  {
+    "id": "chimes-metal",
+    "title": "Wind chimes",
+    "author": "unknown (Moodist third-party asset)",
+    "license": "Pixabay Content License or CC0 (per Moodist README)",
+    "url": "https://github.com/remvze/moodist/blob/main/public/sounds/things/wind-chimes.mp3"
+  },
+  {
+    "id": "chimes-wood",
+    "title": "Bamboo chimes Alem w fx 1.wav",
+    "author": "Owl",
+    "license": "CC-BY 4.0",
+    "url": "https://freesound.org/people/Owl/sounds/387918/"
+  },
+  {
+    "id": "tanpura",
+    "title": "Tanbura_96Khz24bit.wav",
+    "author": "psuess",
+    "license": "CC0 1.0",
+    "url": "https://freesound.org/people/psuess/sounds/194435/"
+  },
+  {
+    "id": "flute",
+    "title": "Dreamy Bansuri Pads+Ambience3_bass_corrected",
+    "author": "Swaraj_Sonavane",
+    "license": "CC-BY 4.0",
+    "url": "https://freesound.org/people/Swaraj_Sonavane/sounds/859882/"
+  },
+  {
+    "id": "piano",
+    "title": "Erik Satie - Gymnopedies - la 1ere, lent et douloureux",
+    "author": "Erik Satie (composer); historic recording",
+    "license": "Public domain",
+    "url": "https://commons.wikimedia.org/wiki/File:Erik_Satie_-_gymnopedies_-_la_1_ere._lent_et_douloureux.ogg"
+  },
+  {
+    "id": "lullaby",
+    "title": "Lullaby, rendered from Salamander Grand Piano V3 samples",
+    "author": "Alexander Holm (samples)",
+    "license": "CC-BY 3.0",
+    "url": "https://github.com/sfzinstruments/SalamanderGrandPiano"
+  },
+  {
+    "id": "sitar",
+    "title": "Sourav-Ganguly-ITC-SRA.wav",
+    "author": "xserra",
+    "license": "CC-BY 4.0",
+    "url": "https://freesound.org/people/xserra/sounds/125985/"
+  },
+  {
+    "id": "sarod",
+    "title": "Parag-Chordia-2.wav",
+    "author": "xserra",
+    "license": "CC-BY 4.0",
+    "url": "https://freesound.org/people/xserra/sounds/126404/"
+  }
+]
