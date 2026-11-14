@@ -4,7 +4,7 @@ A sleep-sounds mixer for Android. Pick any combination of sounds, set each one's
 
 <img src="docs/screenshot.png" width="300" alt="Sleepville main screen: a grid of sound buttons, three of them lit, with saved mixes above and play, timer and mix controls below" />
 
-**[Download the latest APK](https://github.com/VibeMyCode/Sleepville/releases/latest)** — Android 8.0 or newer. Open the file on the phone and allow installation from this source.
+**[Download the latest APK](https://github.com/VibeMyCode/Sleepville/releases/latest/download/Sleepville.apk)** — Android 8.0 or newer. Open the file on the phone and allow installation from this source.
 
 ## What it does
 

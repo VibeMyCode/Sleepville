@@ -1,10 +1,10 @@
 # Sleepville: материалы для промо
 
-Этот файл — всё, что нужно, чтобы написать посты и статью о приложении Sleepville, не заглядывая в код. Состояние на 14 ноября 2026 года, версия 0.3.0. Снимки экрана и видео сняты с версии 0.2.2: она выглядит так же, но знала только русский и английский.
+Этот файл — всё, что нужно, чтобы написать посты и статью о приложении Sleepville, не заглядывая в код. Состояние на 14 ноября 2026 года, версия 1.0.0. Снимки экрана и видео сняты с более ранней сборки: она выглядит так же, но знала только русский и английский.
 
 ## Сначала проверь
 
-Ссылка для скачивания — https://github.com/VibeMyCode/Sleepville/releases/latest. На странице должен быть файл `Sleepville-<версия>.apk`. Перед публикацией поста открой ссылку; если файла нет, не публикуй пост и сообщи об этом владельцу канала. В Google Play приложения нет.
+Перед публикацией поста открой страницу релизов: https://github.com/VibeMyCode/Sleepville/releases/latest. На ней должен быть файл `Sleepville.apk`. Если файла нет, не публикуй пост и сообщи об этом владельцу канала. В Google Play приложения нет.
 
 ## Что это
 
@@ -62,7 +62,8 @@ Sleepville — бесплатное приложение для Android, кот�
 
 | Что | Ссылка |
 |---|---|
-| Скачать APK | https://github.com/VibeMyCode/Sleepville/releases/latest |
+| Скачать APK сразу (прямая ссылка на файл, всегда последняя версия) | https://github.com/VibeMyCode/Sleepville/releases/latest/download/Sleepville.apk |
+| Страница релиза с описанием | https://github.com/VibeMyCode/Sleepville/releases/latest |
 | Исходный код | https://github.com/VibeMyCode/Sleepville |
 | Поддержать автора на Boosty | https://boosty.to/vibemycode/donate |
 | Вопросы и идеи | https://github.com/VibeMyCode/Sleepville/issues |
